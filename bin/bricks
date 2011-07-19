@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+var argv    = require('optimist').argv,
+    bricks  = require('bricks');
+
+if (argv.help) {
+    console.log('Usage: bricks [--help] [--port port] [--ipaddr ipaddr] [--path path] [--log log]');
+    console.log('    --port port     [default 8080]');
+    console.log('    --ipaddr ipaddr [default 0.0.0.0]');
+    console.log('    --path path     [default "."]');
+    console.log('    --log log       [default none]');
+
+    process.exit(0);
+}
+
+
+var port   = argv.port || 8080,
+    ipaddr = argv.ipaddr || '0.0.0.0',
+    log    = argv.log,
+    path   = argv.path || '.';
+
+
+var appserver = new bricks.appserver();
+
+appserver.addRoute(/.+/, appserver.plugins.filehandler, { basedir: path });
+appserver.addRoute(/.+/, appserver.plugins.fourohfour);
+
+if (log) {
+    try {
+        appserver.addRoute(/.+/, appserver.plugins.loghandler, { section: 'final', filename: log });
+    } catch (error) {
+        console.log('Error opening logfile, continuing without logfile');
+    }
+}
+var server = appserver.createServer();
+
+try {
+    server.listen(port, ipaddr);
+} catch (error) {
+    console.log('Error starting server, unable to bind to ' + ipaddr + ':' + port);
+}

@@ -1,0 +1,29 @@
+{
+  "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/blog/)",
+  "name": "bricks",
+  "description": "Bricks Application Server",
+  "version": "1.0.1",
+  "homepage": "http://legitimatesounding.com/",
+  "repository": {
+    "url": ""
+  },
+  "main": "./lib/appserver.js",
+  "engines": {
+    "node": "~0.4.7"
+  },
+  "dependencies": {
+      "cookies":    "~0.1.6",
+      "mime":       "~1.2.2",
+      "date-utils": ">1.0.0",
+      "optimist":   "~0.2"
+  },
+  "devDependencies": {
+      "vows": "~0.5.0"
+  },
+  "directories": {
+      "test": "./test"
+  },
+  "bin": {
+      "bricks": "./bin/bricks"
+  }
+}
