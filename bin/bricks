@@ -22,12 +22,12 @@ var port   = argv.port || 8080,
 
 var appserver = new bricks.appserver();
 
-appserver.addRoute(/.+/, appserver.plugins.filehandler, { basedir: path });
-appserver.addRoute(/.+/, appserver.plugins.fourohfour);
+appserver.addRoute(".+", appserver.plugins.filehandler, { basedir: path });
+appserver.addRoute(".+", appserver.plugins.fourohfour);
 
 if (log) {
     try {
-        appserver.addRoute(/.+/, appserver.plugins.loghandler, { section: 'final', filename: log });
+        appserver.addRoute(".+", appserver.plugins.loghandler, { section: 'final', filename: log });
     } catch (error) {
         console.log('Error opening logfile, continuing without logfile');
     }
