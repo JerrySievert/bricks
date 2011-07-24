@@ -30,10 +30,10 @@ vows.describe('Add Routes').addBatch({
             assert.equal(topic[3].length, 0);
         }
     },
-    'can add a route to routes': {
+    'can add a route to main': {
         topic: function () {
             var appserver = new server.appserver();
-            appserver.addRoute(/.+/, function () { }, { section: 'route' });
+            appserver.addRoute(/.+/, function () { }, { section: 'main' });
             return appserver.getRoutes();
         },
         'has an entry in routes': function (topic) {

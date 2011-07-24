@@ -2,6 +2,9 @@
     function Response (setup) {
         setup = setup || { };
         this._internals = setup;
+        this.socket = {
+            encrypted: setup.encrypted || false
+        };
     }
     
     Response.prototype.get = function (key) {
@@ -27,6 +30,14 @@
         this._internals.code    = code;
         this._internals.reason  = reason;
         this._internals.headers = headers;
+    };
+
+    Response.prototype.setHeader = function (key, value) {
+        this._internals.headers[key] = value;
+    };
+
+    Response.prototype.getHeader = function (key) {
+        return this._internals.headers[key];
     };
 
     Response.prototype.end = function (data, encoding) {
