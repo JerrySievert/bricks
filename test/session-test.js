@@ -10,8 +10,8 @@ vows.describe('Sessions').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
 
-            appserver.addRoute(/.+/, appserver.plugins.sessionhandler, { section: 'pre' });
-            appserver.addRoute(/.+/, function (request, response) { thisp.callback(undefined, response); });
+            appserver.addRoute(".+", appserver.plugins.sessionhandler, { section: 'pre' });
+            appserver.addRoute(".+", function (request, response) { thisp.callback(undefined, response); });
 
             var req = new mrequest.request();
             req.url = "/foo";

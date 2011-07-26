@@ -10,8 +10,8 @@ vows.describe('Plugins').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
             
-            appserver.addRoute(/.+/, appserver.plugins.fourohfour);
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", appserver.plugins.fourohfour);
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             }, { section: "final" });
 
@@ -33,14 +33,14 @@ vows.describe('Plugins').addBatch({
             var redirects = {
                 section: "pre",
                 routes: [ {
-                    path:      /.+/,
+                    path:      ".+",
                     url:       'http://foo.com/bar',
                     permanent: true
                 } ]
             };
 
-            appserver.addRoute(/.+/, appserver.plugins.redirect, redirects);
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", appserver.plugins.redirect, redirects);
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             }, { section: "final" });
 
@@ -62,13 +62,13 @@ vows.describe('Plugins').addBatch({
             var redirects = {
                 section: "pre",
                 routes: [ {
-                    path: /.+/,
+                    path: ".+",
                     url:  'http://foo.com/bar'
                 } ]
             };
 
-            appserver.addRoute(/.+/, appserver.plugins.redirect, redirects);
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", appserver.plugins.redirect, redirects);
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             }, { section: "final" });
 
@@ -87,8 +87,8 @@ vows.describe('Plugins').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
             
-            appserver.addRoute(/.+/, appserver.plugins.filehandler, { basedir: __dirname });
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", appserver.plugins.filehandler, { basedir: __dirname });
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             }, { section: "final" });
 
@@ -107,8 +107,8 @@ vows.describe('Plugins').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
             
-            appserver.addRoute(/.+/, appserver.plugins.filehandler, { basedir: __dirname });
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", appserver.plugins.filehandler, { basedir: __dirname });
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             }, { section: "final" });
 

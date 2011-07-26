@@ -45,7 +45,7 @@ vows.describe('Run Routes').addBatch({
         topic: function () {
             var appserver = new server.appserver();
             var thisp = this;
-            appserver.addRoute(/^\/foo/, function (request, response, options) { 
+            appserver.addRoute(new RegExp(/^\/foo/), function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             });
 
@@ -66,7 +66,7 @@ vows.describe('Run Routes').addBatch({
 
             var appserver = new server.appserver();
             
-            appserver.addRoute(/^\/foo/, plugin);
+            appserver.addRoute("^\/foo", plugin);
 
             var res = new mresponse.response();
             var req = new mrequest.request();
@@ -84,9 +84,9 @@ vows.describe('Run Routes').addBatch({
 
             var appserver = new server.appserver();
             
-            appserver.addRoute(/^\/foo/, function(a,b,c) { thisp.callback(1,a,b,c); });
+            appserver.addRoute("^\/foo", function(a,b,c) { thisp.callback(1,a,b,c); });
 
-            appserver.addRoute(/.+/, function (request, response, options) { 
+            appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             });
 

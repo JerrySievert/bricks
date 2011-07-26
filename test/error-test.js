@@ -11,7 +11,7 @@ vows.describe('Errors').addBatch({
             var thisp = this;
 
             appserver.addEventHandler('run.fatal', function (error) { thisp.callback(undefined, error); });
-            appserver.addRoute(/.+/, function () { foo(); });
+            appserver.addRoute(".+", function () { foo(); });
 
             var req = new mrequest.request();
             req.url = "/foo";
@@ -19,7 +19,7 @@ vows.describe('Errors').addBatch({
 
             appserver.handleRequest(req, res, appserver);
         },
-        'results from an error': function (err, data) {
+        'should result in a run.fatal event': function (err, data) {
             assert.equal(data, 'run.fatal');
         }
     },
@@ -37,7 +37,7 @@ vows.describe('Errors').addBatch({
 
             appserver.handleRequest(req, res, appserver);
         },
-        'results from an error': function (err, data) {
+        'should result in a route.fatal event': function (err, data) {
             assert.equal(data, 'route.fatal');
         }
     }
