@@ -99,5 +99,25 @@ vows.describe('Run Routes').addBatch({
         'results from run': function (err, request, response, options) {
             assert.equal(err, undefined);
         }
+    },
+    'replacing the router with a default true': {
+        topic: function () {
+            var thisp = this;
+
+            var appserver = new server.appserver({ checkRoute: function () { return true; } });
+            
+            appserver.addRoute("blah blah blah", function (request, response, options) { 
+                thisp.callback(undefined, request, response, options);
+            });
+
+            var res = new mresponse.response();
+            var req = new mrequest.request();
+            req.url = "/bar";
+
+            appserver.handleRequest(req, res, appserver);
+        },
+        'should cause any route to fire': function (err, request, response, options) {
+            assert.equal(err, undefined);
+        }
     }
 }).export(module);
