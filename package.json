@@ -9,7 +9,7 @@
   },
   "main": "./lib/appserver.js",
   "engines": {
-    "node": "~0.4.7"
+    "node": ">0.4.5"
   },
   "dependencies": {
       "cookies":       "~0.1.6",
