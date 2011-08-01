@@ -2,8 +2,9 @@
   "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/blog/)",
   "name": "bricks",
   "description": "Bricks Application Server",
-  "version": "1.0.1",
-  "homepage": "http://legitimatesounding.com/",
+  "version": "1.0.2",
+  "homepage": "http://bricksjs.com/",
+  "preferGlobal": "true",
   "repository": {
     "url": ""
   },
