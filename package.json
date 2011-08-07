@@ -2,12 +2,14 @@
   "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/blog/)",
   "name": "bricks",
   "description": "Bricks Application Server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "http://bricksjs.com/",
   "preferGlobal": "true",
   "repository": {
-    "url": ""
+    "type": "git",
+    "url": "http://github.com/JerrySievert/bricks.git"
   },
+  "license" : "MIT/X11",
   "main": "./lib/appserver.js",
   "engines": {
     "node": ">0.4.5"

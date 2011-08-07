@@ -34,6 +34,7 @@ vows.describe('Events').addBatch({
                 response.on('main.complete', function (event, response) {
                     thisp.callback(undefined, event);
                 });
+                response.end();
             }, { 'section': 'main' });
 
             var req = new mrequest.request();
@@ -54,6 +55,7 @@ vows.describe('Events').addBatch({
                 response.on('post.complete', function (event, response) {
                     thisp.callback(undefined, event);
                 });
+                response.end();
             }, { 'section': 'post' });
 
             var req = new mrequest.request();
@@ -74,6 +76,7 @@ vows.describe('Events').addBatch({
                 response.on('final.complete', function (event, response) {
                     thisp.callback(undefined, event);
                 });
+                response.end();
             }, { 'section': 'final' });
 
             var req = new mrequest.request();

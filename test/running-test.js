@@ -89,7 +89,7 @@ vows.describe('Run Routes').addBatch({
             appserver.addRoute(".+", function (request, response, options) { 
                 thisp.callback(undefined, request, response, options);
             });
-
+            setTimeout(function() { thisp.callback('callback not fired'); }, 50);
             var res = new mresponse.response();
             var req = new mrequest.request();
             req.url = "/bar";
@@ -97,7 +97,7 @@ vows.describe('Run Routes').addBatch({
             appserver.handleRequest(req, res, appserver);
         },
         'results from run': function (err, request, response, options) {
-            assert.equal(err, undefined);
+            assert.equal(err, 'callback not fired');
         }
     },
     'replacing the router with a default true': {
