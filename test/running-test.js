@@ -86,9 +86,6 @@ vows.describe('Run Routes').addBatch({
             
             appserver.addRoute("^\/foo", function(a,b,c) { thisp.callback(1,a,b,c); });
 
-//            appserver.addRoute(".+", function (request, response, options) { 
-//                thisp.callback(undefined, request, response, options);
-//            });
             setTimeout(function() { thisp.callback('callback not fired'); }, 50);
             var res = new mresponse.response();
             var req = new mrequest.request();
