@@ -2,7 +2,7 @@
   "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/blog/)",
   "name": "bricks",
   "description": "Bricks Application Server",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "homepage": "http://bricksjs.com/",
   "preferGlobal": "true",
   "repository": {
@@ -13,7 +13,7 @@
   "license" : "MIT/X11",
   "main": "./lib/appserver.js",
   "engines": {
-    "node": ">0.4.5"
+    "node": ">0.4.3"
   },
   "dependencies": {
       "cookies":       "~0.1.6",
