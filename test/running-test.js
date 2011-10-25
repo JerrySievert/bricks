@@ -41,24 +41,6 @@ vows.describe('Run Routes').addBatch({
             assert.equal(response.statusCode(), 200);
         }
     },
-    'regex route added for request': {
-        topic: function () {
-            var appserver = new server.appserver();
-            var thisp = this;
-            appserver.addRoute(new RegExp(/^\/foo/), function (request, response, options) { 
-                thisp.callback(undefined, request, response, options);
-            });
-
-            var res = new mresponse.response();
-            var req = new mrequest.request();
-            req.url = "/foo";
-
-            appserver.handleRequest(req, res, appserver);
-        },
-        'results from run': function (err, request, response, options) {
-            assert.equal(response.statusCode(), 200);
-        }
-    },
     'plugin route added for request': {
         topic: function () {
             var thisp = this;
