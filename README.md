@@ -2,6 +2,8 @@
 
 An advanced modular Web Framework built on Node.
 
+[![Build Status](https://secure.travis-ci.org/JerrySievert/bricks.png)](http://travis-ci.org/JerrySievert/bricks)
+
 ## Installing
 
     $ npm install bricks
