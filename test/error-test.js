@@ -10,7 +10,7 @@ vows.describe('Errors').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
 
-            appserver.addEventHandler('run.fatal', function (error) { thisp.callback(undefined, error); });
+            appserver.addEventHandler('run.fatal', function (error) { thisp.callback(this.event, error); });
             appserver.addRoute(".+", function () { foo(); });
 
             var req = new mrequest.request();
@@ -20,7 +20,7 @@ vows.describe('Errors').addBatch({
             appserver.handleRequest(req, res, appserver);
         },
         'should result in a run.fatal event': function (err, data) {
-            assert.equal(data, 'run.fatal');
+            assert.equal(err, 'run.fatal');
         }
     },
     'error handler called for failed route': {
@@ -28,7 +28,7 @@ vows.describe('Errors').addBatch({
             var appserver = new server.appserver();
             var thisp = this;
 
-            appserver.addEventHandler('route.fatal', function (error) { thisp.callback(undefined, error); });
+            appserver.addEventHandler('route.fatal', function (error) { thisp.callback(this.event, error); });
             appserver.addRoute(function() { foo(); }, function () { foo(); });
 
             var req = new mrequest.request();
@@ -38,7 +38,7 @@ vows.describe('Errors').addBatch({
             appserver.handleRequest(req, res, appserver);
         },
         'should result in a route.fatal event': function (err, data) {
-            assert.equal(data, 'route.fatal');
+            assert.equal(err, 'route.fatal');
         }
     }
 }).export(module);

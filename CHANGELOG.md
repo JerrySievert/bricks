@@ -4,6 +4,7 @@
 
 * `addRoute()` now returns `routeId` instead of `this` - BREAKING CHANGE
 * added `removeRoute(routeId)` 
+* updated to `EventEmitter2` current - BREAKING CHANGE
 
 ### 1.0.9 - October 25, 2011
 
