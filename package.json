@@ -2,7 +2,7 @@
   "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/blog/)",
   "name": "bricks",
   "description": "Bricks Application Server",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "homepage": "http://bricksjs.com/",
   "preferGlobal": "true",
   "repository": {
@@ -20,8 +20,8 @@
       "mime":          ">=1.2.2",
       "date-utils":    ">1.0.0",
       "optimist":      ">=0.2",
-      "node-uuid":     "~1.1.0",
-      "eventemitter2": "~0.2.6"
+      "node-uuid":     ">1.1.0",
+      "eventemitter2": ">=0.4.0"
   },
   "devDependencies": {
       "vows": ">=0.5.0"

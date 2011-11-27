@@ -5,7 +5,7 @@ var vows      = require('vows'),
     mresponse = require('./mocks/response');
     
 
-vows.describe('Add Routes').addBatch({
+vows.describe('Routes').addBatch({
     'initial appserver': {
         topic: function () {
             var appserver = new server.appserver();
@@ -33,6 +33,25 @@ vows.describe('Add Routes').addBatch({
             assert.equal(topic[3].length, 0);
         }
     },
+    'a route when added to pre': {
+        topic: function () {
+            var appserver = new server.appserver();
+            appserver.addRoute(".+", function () { }, { section: 'pre', added: 0 });
+            var route = appserver.addRoute(".+", function () { }, { section: 'pre' });
+            appserver.addRoute(".+", function () { }, { section: 'pre', added: 1 });
+
+            return [ appserver, route ];
+        },
+        'can be removed correctly': function (topic) {
+            var appserver = topic[0];
+            assert.equal(appserver.removeRoute(topic[1]), true);
+
+            var routes = appserver.getRoutes();
+
+            assert.equal(routes.length, 4);
+            assert.equal(routes[0].length, 2);
+        }
+    },
     'can add a route to main': {
         topic: function () {
             var appserver = new server.appserver();
@@ -45,6 +64,25 @@ vows.describe('Add Routes').addBatch({
             assert.equal(topic[1].length, 1);
             assert.equal(topic[2].length, 0);
             assert.equal(topic[3].length, 0);
+        }
+    },
+    'a route when added to main': {
+        topic: function () {
+            var appserver = new server.appserver();
+            appserver.addRoute(".+", function () { }, { section: 'main', added: 0 });
+            var route = appserver.addRoute(".+", function () { }, { section: 'main' });
+            appserver.addRoute(".+", function () { }, { section: 'main', added: 1 });
+
+            return [ appserver, route ];
+        },
+        'can be removed correctly': function (topic) {
+            var appserver = topic[0];
+            assert.equal(appserver.removeRoute(topic[1]), true);
+
+            var routes = appserver.getRoutes();
+
+            assert.equal(routes.length, 4);
+            assert.equal(routes[1].length, 2);
         }
     },
     'can add a route to post': {
@@ -61,6 +99,25 @@ vows.describe('Add Routes').addBatch({
             assert.equal(topic[3].length, 0);
         }
     },
+    'a route when added to post': {
+        topic: function () {
+            var appserver = new server.appserver();
+            appserver.addRoute(".+", function () { }, { section: 'post', added: 0 });
+            var route = appserver.addRoute(".+", function () { }, { section: 'post' });
+            appserver.addRoute(".+", function () { }, { section: 'post', added: 1 });
+
+            return [ appserver, route ];
+        },
+        'can be removed correctly': function (topic) {
+            var appserver = topic[0];
+            assert.equal(appserver.removeRoute(topic[1]), true);
+
+            var routes = appserver.getRoutes();
+
+            assert.equal(routes.length, 4);
+            assert.equal(routes[2].length, 2);
+        }
+    },
     'can add a route to final': {
         topic: function () {
             var appserver = new server.appserver();
@@ -73,6 +130,25 @@ vows.describe('Add Routes').addBatch({
             assert.equal(topic[1].length, 0);
             assert.equal(topic[2].length, 0);
             assert.equal(topic[3].length, 1);
+        }
+    },
+    'a route when added to final': {
+        topic: function () {
+            var appserver = new server.appserver();
+            appserver.addRoute(".+", function () { }, { section: 'final', added: 0 });
+            var route = appserver.addRoute(".+", function () { }, { section: 'final' });
+            appserver.addRoute(".+", function () { }, { section: 'final', added: 1 });
+
+            return [ appserver, route ];
+        },
+        'can be removed correctly': function (topic) {
+            var appserver = topic[0];
+            assert.equal(appserver.removeRoute(topic[1]), true);
+
+            var routes = appserver.getRoutes();
+
+            assert.equal(routes.length, 4);
+            assert.equal(routes[3].length, 2);
         }
     },
     'a route added to pre as top': {

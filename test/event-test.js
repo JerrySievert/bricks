@@ -11,7 +11,7 @@ vows.describe('Events').addBatch({
             var thisp = this;
             appserver.addRoute(".+", function (request, response, options) {
                 response.on('pre.complete', function (event, response) {
-                    thisp.callback(undefined, event);
+                    thisp.callback(undefined, this.event, event);
                 });
                 response.end();
             }, { 'section': 'pre' });
@@ -22,7 +22,7 @@ vows.describe('Events').addBatch({
 
             appserver.handleRequest(req, res, appserver);
         },
-        'results from run': function (err, event) {
+        'results from run': function (event) {
             assert.equal(event, 'pre.complete');
         }
     },
@@ -32,7 +32,7 @@ vows.describe('Events').addBatch({
             var thisp = this;
             appserver.addRoute("/foo", function (request, response, options) {
                 response.on('main.complete', function (event, response) {
-                    thisp.callback(undefined, event);
+                    thisp.callback(undefined, this.event, event);
                 });
                 response.end();
             }, { 'section': 'main' });
@@ -43,7 +43,7 @@ vows.describe('Events').addBatch({
 
             appserver.handleRequest(req, res, appserver);
         },
-        'results from run': function (err, event) {
+        'results from run': function (event) {
             assert.equal(event, 'main.complete');
         }
     },
@@ -53,7 +53,7 @@ vows.describe('Events').addBatch({
             var thisp = this;
             appserver.addRoute("/foo", function (request, response, options) {
                 response.on('post.complete', function (event, response) {
-                    thisp.callback(undefined, event);
+                    thisp.callback(undefined, this.event, event);
                 });
                 response.end();
             }, { 'section': 'post' });
@@ -64,7 +64,7 @@ vows.describe('Events').addBatch({
 
             appserver.handleRequest(req, res, appserver);
         },
-        'results from run': function (err, event) {
+        'results from run': function (event) {
             assert.equal(event, 'post.complete');
         }
     },
@@ -74,7 +74,7 @@ vows.describe('Events').addBatch({
             var thisp = this;
             appserver.addRoute("/foo", function (request, response, options) {
                 response.on('final.complete', function (event, response) {
-                    thisp.callback(undefined, event);
+                    thisp.callback(undefined, this.event, event);
                 });
                 response.end();
             }, { 'section': 'final' });
