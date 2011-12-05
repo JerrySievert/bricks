@@ -1,5 +1,18 @@
 ## Changes
 
+### 1.1.1 - December 4, 2011
+
+* `plugin.meta` added to plugin definition
+  * `author` - author name
+  * `email` - author email
+  * `name` - plugin name
+  * `description` - plugin description
+* `plugin.name` deprecated in favor of `plugin.meta.name`
+* added `html` and `callback` to `404 handler`
+* added headers, expiration, and modification checks to `filehandler plugin`
+  * added `options.timeout` for cache headers
+  * added `304` response for `If-Modified-Since` headers
+
 ### 1.1.0 - November 27, 2011
 
 * `addRoute()` now returns `routeId` instead of `this` - BREAKING CHANGE

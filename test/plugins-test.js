@@ -2,7 +2,8 @@ var vows      = require('vows'),
     assert    = require('assert'),
     server    = require('../lib/appserver'),
     mrequest  = require('./mocks/request'),
-    mresponse = require('./mocks/response');
+    mresponse = require('./mocks/response'),
+    fs        = require('fs');
 
 vows.describe('Plugins').addBatch({
     '404 plugin called': {
@@ -120,6 +121,27 @@ vows.describe('Plugins').addBatch({
         },
         'buffer is empty': function (err, request, response, options) {
             assert.equal(response._actual.response.get('buffer'), undefined);
+        }
+    },
+    'filehandler sets correct Last-Modified header': {
+        topic: function () {
+            var appserver = new server.appserver();
+            var thisp = this;
+            
+            appserver.addRoute(".+", appserver.plugins.filehandler, { basedir: __dirname });
+            appserver.addRoute(".+", function (request, response, options) { 
+                thisp.callback(undefined, request, response, options);
+            }, { section: "final" });
+
+            var req = new mrequest.request();
+            req.url = "/document";
+            var res = new mresponse.response();
+
+            appserver.handleRequest(req, res, appserver);
+        },
+        'date is set correctly': function (err, request, response, options) {
+            var stats = fs.statSync(__dirname + "/document");
+            assert.equal(response._headers['Last-Modified'], stats.mtime.toUTCString());
         }
     }
 }).export(module);
