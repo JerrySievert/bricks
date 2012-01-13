@@ -1,5 +1,9 @@
 ## Changes
 
+### 1.1.2 - January 13, 2012
+
+* `plugin.request` added `request.body` for `PUT` and `POST`
+
 ### 1.1.1 - December 4, 2011
 
 * `plugin.meta` added to plugin definition
