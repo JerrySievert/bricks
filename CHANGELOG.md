@@ -3,6 +3,7 @@
 ### 1.1.2 - January 13, 2012
 
 * `plugin.request` added `request.body` for `PUT` and `POST`
+* update `createServer` to allow for options for `https`
 
 ### 1.1.1 - December 4, 2011
 
