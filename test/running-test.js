@@ -98,5 +98,33 @@ vows.describe('Run Routes').addBatch({
         'should cause any route to fire': function (err, request, response, options) {
             assert.equal(err, undefined);
         }
+    },
+    'events fired at the end of routes': {
+        topic: function () {
+            var thisp = this;
+
+            var appserver = new server.appserver();
+
+            var msg = [ ];
+            appserver.addRoute(".+", function (request, response) {
+                response.on("pre.complete", function () { msg.push("pre.complete"); });
+                response.next();
+            }, { section: "pre" });
+            appserver.addRoute(".+", function (request, response, options) {
+                msg.push("main");
+                thisp.callback(undefined, msg);
+            });
+
+            var res = new mresponse.response();
+            var req = new mrequest.request();
+            req.url = "/bar";
+
+            appserver.handleRequest(req, res, appserver);
+        },
+        'should be dealt with before the next route starts': function (err, msg) {
+            assert.equal(err, undefined);
+            assert.equal(msg[0], "pre.complete");
+            assert.equal(msg[1], "main");
+        }
     }
 }).export(module);
