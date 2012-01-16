@@ -18,7 +18,7 @@
   "dependencies": {
       "cookies":       "~0.1.6",
       "mime":          ">=1.2.2",
-      "date-utils":    ">1.0.0",
+      "cromag":        ">0.1.0",
       "optimist":      ">=0.2",
       "node-uuid":     ">1.1.0",
       "eventemitter2": ">=0.4.0"
