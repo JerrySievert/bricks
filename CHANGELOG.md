@@ -4,6 +4,7 @@
 
 * `plugin.request` added `request.body` for `PUT` and `POST`
 * update `createServer` to allow for options for `https`
+* removed dependency on `date-utils`, added dependency on `cromag`
 
 ### 1.1.1 - December 4, 2011
 
